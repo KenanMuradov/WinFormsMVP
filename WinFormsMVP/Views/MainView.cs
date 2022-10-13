@@ -31,5 +31,7 @@ namespace WinFormsMVP.Views
         private void bntDelete_Click(object sender, EventArgs e) => DeleteEvent?.Invoke(sender, e);
 
         private void btnAdd_Click(object sender, EventArgs e) => AddEvent?.Invoke(sender, e);
+
+        private void btnUpdate_Click(object sender, EventArgs e) => UpdateEvent.Invoke(sender, e);
     }
 }

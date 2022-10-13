@@ -43,7 +43,8 @@
             this.lBoxStudents.Location = new System.Drawing.Point(12, 69);
             this.lBoxStudents.Name = "lBoxStudents";
             this.lBoxStudents.Size = new System.Drawing.Size(753, 403);
-            this.lBoxStudents.TabIndex = 0;
+            this.lBoxStudents.TabIndex = 6;
+            this.lBoxStudents.TabStop = false;
             // 
             // txtSearch
             // 
@@ -93,6 +94,7 @@
             this.btnUpdate.TabIndex = 2;
             this.btnUpdate.Text = "Update";
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // bntDelete
             // 

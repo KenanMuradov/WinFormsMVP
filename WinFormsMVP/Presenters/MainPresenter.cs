@@ -13,12 +13,14 @@ public class MainPresenter
     private readonly BindingSource _bindingSource;
     private readonly IMainView _mainView;
     private readonly IAddView _addView;
+    private readonly IUpdateView _updateView;
     private readonly List<Student> _students;
 
-    public MainPresenter(IMainView mainView, IAddView addView)
+    public MainPresenter(IMainView mainView, IAddView addView, IUpdateView updateView)
     {
         _mainView = mainView;
         _addView = addView;
+        _updateView = updateView;
 
         _students = new List<Student>()
         {
@@ -34,7 +36,9 @@ public class MainPresenter
         _mainView.SearchEvent += _mainView_SearchEvent;
         _mainView.DeleteEvent += _mainView_DeleteEvent;
         _mainView.AddEvent += _mainView_AddEvent;
+        _mainView.UpdateEvent += _mainView_UpdateEvent;
     }
+
 
     private void _mainView_SearchEvent(object? sender, EventArgs e)
     {
@@ -70,6 +74,29 @@ public class MainPresenter
         };
 
         _bindingSource.Add(student);
+    }
+
+    private void _mainView_UpdateEvent(object? sender, EventArgs e)
+    {
+        if(_bindingSource.Current is null)
+        {
+            MessageBox.Show("Select Student To Update","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            return;
+        }
+
+        var result = ((Form)_updateView).ShowDialog();
+
+        if (result == DialogResult.Cancel)
+            return;
+
+        var student = _bindingSource.Current as Student;
+
+        student.FirstName = _updateView.FirstName;
+        student.LastName = _updateView.LastName;
+        student.BirthDate = DateOnly.Parse(_updateView.BirthDate.ToShortDateString());
+        student.Score = (float)_updateView.Score;
+
+        _bindingSource[_bindingSource.IndexOf(_bindingSource.Current)] = student;
     }
 
 }

@@ -17,7 +17,10 @@ namespace WinFormsMVP
 
             IMainView mainView = new MainView();
             IAddView addView = new AddView();
-            new MainPresenter(mainView, addView);
+            IUpdateView updateView = new UpdateView();
+            new MainPresenter(mainView, addView, updateView);
+            new AddPresenter(addView);
+            new UpdatePresenter(updateView);
 
             Application.Run((Form)mainView);
         }
