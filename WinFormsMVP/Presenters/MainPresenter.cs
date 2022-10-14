@@ -96,12 +96,10 @@ public class MainPresenter
         _updateView.Score = (decimal)student.Score;
         _updateView.BirthDate = DateTime.Parse(student.BirthDate.ToString());
 
-
         var result = _updateView.ShowDialog();
 
         if (result == DialogResult.Cancel)
             return;
-
 
         student.FirstName = _updateView.FirstName;
         student.LastName = _updateView.LastName;
