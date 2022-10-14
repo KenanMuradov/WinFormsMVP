@@ -53,9 +53,13 @@ public class MainPresenter
     private void _mainView_DeleteEvent(object? sender, EventArgs e)
     {
         if (_bindingSource.Current is null)
+        {
+            MessageBox.Show("Select Student To Update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
+        }
 
         _bindingSource.Remove(_bindingSource.Current);
+        MessageBox.Show("Successfully deleted", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void _mainView_AddEvent(object? sender, EventArgs e)
@@ -74,6 +78,7 @@ public class MainPresenter
         };
 
         _bindingSource.Add(student);
+        MessageBox.Show("Successfully Added", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void _mainView_UpdateEvent(object? sender, EventArgs e)
@@ -103,7 +108,8 @@ public class MainPresenter
         student.BirthDate = _updateView.BirthDate;
         student.Score = (float)_updateView.Score;
 
-        _bindingSource[_bindingSource.IndexOf(_bindingSource.Current)] = student;
+        _bindingSource.ResetCurrentItem();
+        MessageBox.Show("Successfully Updated", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
 }
