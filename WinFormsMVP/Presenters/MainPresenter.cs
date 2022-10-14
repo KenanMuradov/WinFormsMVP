@@ -24,9 +24,9 @@ public class MainPresenter
 
         _students = new List<Student>()
         {
-            new ("Miri","Miri",new DateOnly(2003,9,1),8.3f),
-            new ("Tural","Tural",new DateOnly(2003,9,1),8.3f),
-            new ("Kamran","Kamran",new DateOnly(2003,9,1),8.3f),
+            new ("Miri","Miri",new DateTime(2003,9,1),8.3f),
+            new ("Tural","Tural",new DateTime(2003,9,1),8.3f),
+            new ("Kamran","Kamran",new DateTime(2003,9,1),8.3f),
         };
 
         _bindingSource = new();
@@ -69,7 +69,7 @@ public class MainPresenter
         {
             FirstName = _addView.FirstName,
             LastName = _addView.LastName,
-            BirthDate = DateOnly.Parse(_addView.BirthDate.ToShortDateString()),
+            BirthDate = _addView.BirthDate,
             Score = (float)_addView.Score
         };
 
@@ -78,22 +78,29 @@ public class MainPresenter
 
     private void _mainView_UpdateEvent(object? sender, EventArgs e)
     {
-        if(_bindingSource.Current is null)
+        var student = _bindingSource.Current as Student;
+
+        if (student is null)
         {
-            MessageBox.Show("Select Student To Update","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            MessageBox.Show("Select Student To Update", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
+
+        _updateView.FirstName = student.FirstName;
+        _updateView.LastName = student.LastName;
+        _updateView.Score = (decimal)student.Score;
+        _updateView.BirthDate = DateTime.Parse(student.BirthDate.ToString());
+
 
         var result = ((Form)_updateView).ShowDialog();
 
         if (result == DialogResult.Cancel)
             return;
 
-        var student = _bindingSource.Current as Student;
 
         student.FirstName = _updateView.FirstName;
         student.LastName = _updateView.LastName;
-        student.BirthDate = DateOnly.Parse(_updateView.BirthDate.ToShortDateString());
+        student.BirthDate = _updateView.BirthDate;
         student.Score = (float)_updateView.Score;
 
         _bindingSource[_bindingSource.IndexOf(_bindingSource.Current)] = student;

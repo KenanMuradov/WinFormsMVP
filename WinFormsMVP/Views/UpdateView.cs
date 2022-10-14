@@ -17,13 +17,29 @@ public partial class UpdateView : Form, IUpdateView
         InitializeComponent();
     }
 
-    public string FirstName => txtFirstName.Text;
+    public string FirstName 
+    {
+        get => txtFirstName.Text;
+        set => txtFirstName.Text = value;
+    }
 
-    public string LastName => txtLastName.Text;
+    public string LastName
+    {
+        get => txtLastName.Text;
+        set => txtLastName.Text = value;
+    }
 
-    public decimal Score => numericScore.Value;
+    public decimal Score
+    {
+        get => numericScore.Value;
+        set => numericScore.Value = value;
+    }
 
-    public DateTime BirthDate => monthCalendar1.SelectionStart;
+    public DateTime BirthDate
+    {
+        get => monthCalendar1.SelectionStart;
+        set => monthCalendar1.SelectionStart = value;
+    }
 
     public event EventHandler SaveEvent;
     public event EventHandler CancelEvent;
