@@ -15,4 +15,6 @@ public interface IUpdateView
 
     event EventHandler SaveEvent;
     event EventHandler CancelEvent;
+
+    DialogResult ShowDialog();
 }

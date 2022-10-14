@@ -60,7 +60,7 @@ public class MainPresenter
 
     private void _mainView_AddEvent(object? sender, EventArgs e)
     {
-        var result = ((Form)_addView).ShowDialog();
+        var result = _addView.ShowDialog();
 
         if (result == DialogResult.Cancel)
             return;
@@ -92,7 +92,7 @@ public class MainPresenter
         _updateView.BirthDate = DateTime.Parse(student.BirthDate.ToString());
 
 
-        var result = ((Form)_updateView).ShowDialog();
+        var result = _updateView.ShowDialog();
 
         if (result == DialogResult.Cancel)
             return;

@@ -14,4 +14,6 @@ public interface IAddView
     DateTime BirthDate { get; }
     event EventHandler SaveEvent;
     event EventHandler CancelEvent;
+
+    DialogResult ShowDialog();
 }
