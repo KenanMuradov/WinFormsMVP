@@ -1,4 +1,5 @@
 using WinFormsMVP.Presenters;
+using WinFormsMVP.Repositories;
 using WinFormsMVP.Views;
 
 namespace WinFormsMVP
@@ -18,7 +19,9 @@ namespace WinFormsMVP
             IMainView mainView = new MainView();
             IAddView addView = new AddView();
             IUpdateView updateView = new UpdateView();
-            new MainPresenter(mainView, addView, updateView);
+            IStudentRepository studentRepository = new EfStudentRepository();
+
+            new MainPresenter(mainView, addView, updateView, studentRepository);
             new AddPresenter(addView);
             new UpdatePresenter(updateView);
 
