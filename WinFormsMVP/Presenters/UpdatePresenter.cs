@@ -26,13 +26,13 @@ public class UpdatePresenter
         StringBuilder sb = new StringBuilder();
 
         if (!Regex.IsMatch(_updateView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_updateView.FirstName))
-            sb.Append("Incorrect Name\n");
+            sb.Append($"Incorrect {nameof(_updateView.FirstName)}\n");
 
         if (!Regex.IsMatch(_updateView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_updateView.LastName))
-            sb.Append("Incorrect Surname\n");
+            sb.Append($"Incorrect {nameof(_updateView.LastName)}\n");
 
-        if ((DateTime.Now - _updateView.BirthDate).Days / 365 < 18)
-            sb.Append("Age Doesn't Match\n");
+        if ((DateTime.Now.Year - _updateView.BirthDate.Year) < 18)
+            sb.Append($"{nameof(_updateView.BirthDate)} Doesn't Match\n");
 
         if (sb.Length > 0)
         {
@@ -40,7 +40,7 @@ public class UpdatePresenter
             return;
         }
 
-        ((Form)_updateView).DialogResult = DialogResult.OK;
+        _updateView.DialogResult = DialogResult.OK;
     }
 
 

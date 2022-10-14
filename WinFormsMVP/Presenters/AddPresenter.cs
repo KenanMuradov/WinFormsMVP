@@ -26,13 +26,13 @@ public class AddPresenter
         StringBuilder sb = new StringBuilder();
 
         if (!Regex.IsMatch(_addView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_addView.FirstName))
-            sb.Append("Incorrect Name\n");
+            sb.Append($"Incorrect {nameof(_addView.FirstName)}\n");
 
         if (!Regex.IsMatch(_addView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_addView.LastName))
-            sb.Append("Incorrect Surname\n");
+            sb.Append($"Incorrect {nameof(_addView.LastName)}\n");
 
-        if ((DateTime.Now - _addView.BirthDate).Days / 365 < 18)
-            sb.Append("Age Doesn't Match\n");
+        if ((DateTime.Now.Year - _addView.BirthDate.Year) < 18)
+            sb.Append($"{nameof(_addView.BirthDate)} Doesn't Match\n");
 
         if (sb.Length > 0)
         {
@@ -40,7 +40,7 @@ public class AddPresenter
             return;
         }
 
-        ((Form)_addView).DialogResult = DialogResult.OK;
+        _addView.DialogResult = DialogResult.OK;
     }
 
     private void _addView_CancelEvent(object? sender, EventArgs e)=> ((Form)_addView).DialogResult = DialogResult.Cancel;

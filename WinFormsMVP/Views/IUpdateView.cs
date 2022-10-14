@@ -17,4 +17,6 @@ public interface IUpdateView
     event EventHandler CancelEvent;
 
     DialogResult ShowDialog();
+    DialogResult DialogResult { get; set; }
+
 }
