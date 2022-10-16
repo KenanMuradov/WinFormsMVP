@@ -47,7 +47,7 @@ public class MainPresenter
         _bindingSource.DataSource = IsNullOrWhiteSpace switch
         {
             true => _repository.GetList(),
-            false => _repository.GetList()?.Where(s => s.FirstName.Contains(searchValue, StringComparison.OrdinalIgnoreCase) || s.LastName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList()
+            false => _repository.GetList().Where(s => s.FirstName.Contains(searchValue, StringComparison.OrdinalIgnoreCase) || s.LastName.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList()
         };
 
     }

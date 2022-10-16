@@ -12,7 +12,7 @@ using WinFormsMVP.Repositories.Contexts;
 namespace WinFormsMVP.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20221014140710_init")]
+    [Migration("20221016091103_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

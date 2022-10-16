@@ -9,5 +9,5 @@ namespace WinFormsMVP.Repositories;
 
 public interface IStudentRepository : IRepository<Student>
 {
-    Student? GetById(Guid id);
+    Student? GetById(Guid Id);
 }

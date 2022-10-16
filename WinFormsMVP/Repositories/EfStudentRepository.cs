@@ -14,22 +14,22 @@ public class EfStudentRepository : IStudentRepository
 
     public EfStudentRepository() => _context = new();
 
-
-
-    public Student? Get(Func<Student, bool> predicate) => _context.Students.FirstOrDefault(predicate);
-    public Student GetById(Guid id) => _context.Students.Find(id);
-
-    public List<Student>? GetList(Func<Student, bool>? predicate = null) => (predicate == null) switch
-    {
-        true => _context.Students?.ToList(),
-        false => _context.Students?.Where(predicate).ToList()
-    };
-
     public void Add(Student entity)
     {
         _context.Students?.Add(entity);
         _context.SaveChanges();
     }
+
+    public Student? Get(Func<Student, bool> predicate) => _context.Students?.FirstOrDefault(predicate);
+
+    public Student? GetById(Guid Id)=>_context.Students?.Find(Id);
+
+    public List<Student>? GetList(Func<Student, bool>? predicate = null)
+        => (predicate is null) switch
+        {
+            true => _context.Students?.ToList(),
+            false =>_context.Students?.Where(predicate).ToList()
+        };
 
     public void Remove(Student entity)
     {

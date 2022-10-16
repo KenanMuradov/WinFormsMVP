@@ -25,10 +25,10 @@ public class UpdatePresenter
     {
         StringBuilder sb = new StringBuilder();
 
-        if (!Regex.IsMatch(_updateView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_updateView.FirstName))
+        if (!Regex.IsMatch(_updateView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$") || string.IsNullOrWhiteSpace(_updateView.FirstName))
             sb.Append($"Incorrect {nameof(_updateView.FirstName)}\n");
 
-        if (!Regex.IsMatch(_updateView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_updateView.LastName))
+        if (!Regex.IsMatch(_updateView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$") || string.IsNullOrWhiteSpace(_updateView.LastName))
             sb.Append($"Incorrect {nameof(_updateView.LastName)}\n");
 
         if ((DateTime.Now.Year - _updateView.BirthDate.Year) < 18)

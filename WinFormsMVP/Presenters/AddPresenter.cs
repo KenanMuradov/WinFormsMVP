@@ -25,10 +25,10 @@ public class AddPresenter
     {
         StringBuilder sb = new StringBuilder();
 
-        if (!Regex.IsMatch(_addView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_addView.FirstName))
+        if (!Regex.IsMatch(_addView.FirstName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$") || string.IsNullOrWhiteSpace(_addView.FirstName))
             sb.Append($"Incorrect {nameof(_addView.FirstName)}\n");
 
-        if (!Regex.IsMatch(_addView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{3,}$") || string.IsNullOrWhiteSpace(_addView.LastName))
+        if (!Regex.IsMatch(_addView.LastName, @"^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$") || string.IsNullOrWhiteSpace(_addView.LastName))
             sb.Append($"Incorrect {nameof(_addView.LastName)}\n");
 
         if ((DateTime.Now.Year - _addView.BirthDate.Year) < 18)
